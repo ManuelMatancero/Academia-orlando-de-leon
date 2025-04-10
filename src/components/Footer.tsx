@@ -1,6 +1,7 @@
 import React from 'react';
 import { Facebook, Twitter, Instagram, Mail, MapPin, Phone } from 'lucide-react';
 import joelLogo from '../assets/images/joellogo.jpg';
+import { Link } from 'react-router-dom';
 
 const Footer: React.FC = () => {
   const academyName = "Academia Orlando de León";
@@ -25,12 +26,12 @@ const Footer: React.FC = () => {
     <footer className="bg-gradient-to-b from-[#071f43] to-[#0a1a36] text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
-          
+
           {/* Columna Logo y Descripción */}
           <div className="lg:col-span-2 space-y-6">
             <div className="flex items-center gap-4">
-              <img 
-                src={joelLogo} 
+              <img
+                src={joelLogo}
                 alt={`Logo ${academyName}`}
                 className="h-20 w-20 rounded-full border-2 border-blue-400/50 object-cover"
               />
@@ -65,13 +66,13 @@ const Footer: React.FC = () => {
             <ul className="space-y-3">
               {navLinks.map((link, index) => (
                 <li key={index}>
-                  <a 
-                    href={link.path}
+                  <Link
+                    to={link.path}
                     className="flex items-center text-blue-100/90 hover:text-white group transition-colors duration-200"
                   >
                     <span className="w-2 h-2 bg-blue-400 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
