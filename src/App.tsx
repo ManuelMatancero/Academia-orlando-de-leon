@@ -13,10 +13,10 @@ function App() {
       <div className="min-h-screen bg-gray-50">
         <Navbar />
         <Routes>
-          <Route path="/Academia-orlando-de-leon" element={<Home />} />
-          <Route path="/Academia-orlando-de-leon/gallery" element={<Gallery />} />
-          <Route path="/Academia-orlando-de-leon/story" element={<Story />} />
-          <Route path="/Academia-orlando-de-leon/donate" element={<Donate />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/gallery" element={<Gallery />} />
+          <Route path="/story" element={<Story />} />
+          <Route path="/donate" element={<Donate />} />
         </Routes>
         <Footer />
       </div>

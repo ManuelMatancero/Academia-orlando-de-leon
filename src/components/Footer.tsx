@@ -15,10 +15,10 @@ const Footer: React.FC = () => {
   ];
   const currentYear = new Date().getFullYear();
   const navLinks = [
-    { path: "/Academia-orlando-de-leon", label: "Inicio" },
-    { path: "/Academia-orlando-de-leon/gallery", label: "Galería" },
-    { path: "/Academia-orlando-de-leon/story", label: "Historia" },
-    { path: "/Academia-orlando-de-leon/donate", label: "Donaciones" }
+    { path: "/", label: "Inicio" },
+    { path: "/gallery", label: "Galería" },
+    { path: "/story", label: "Historia" },
+    { path: "/donate", label: "Donaciones" }
   ];
 
   return (

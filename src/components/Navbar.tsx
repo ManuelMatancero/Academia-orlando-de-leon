@@ -32,10 +32,10 @@ const Navbar: React.FC = () => {
   const lastScrollY = useRef<number>(0);
 
   const navLinks = [
-    { to: "/Academia-orlando-de-leon", label: "Inicio", icon: <Home className="w-5 h-5" /> },
-    { to: "/Academia-orlando-de-leon/gallery", label: "Galería", icon: <Image className="w-5 h-5" /> },
-    { to: "/Academia-orlando-de-leon/story", label: "Historia", icon: <BookOpen className="w-5 h-5" /> },
-    { to: "/Academia-orlando-de-leon/donate", label: "Donaciones", icon: <HeartHandshake className="w-5 h-5" /> },
+    { to: "/", label: "Inicio", icon: <Home className="w-5 h-5" /> },
+    { to: "/gallery", label: "Galería", icon: <Image className="w-5 h-5" /> },
+    { to: "/story", label: "Historia", icon: <BookOpen className="w-5 h-5" /> },
+    { to: "/donate", label: "Donaciones", icon: <HeartHandshake className="w-5 h-5" /> },
   ];
 
   useEffect(() => {
@@ -77,7 +77,7 @@ const Navbar: React.FC = () => {
         <div className="flex justify-between items-center h-24"> {/* Aumentado a h-24 */}
           {/* Logo y Nombre - Versión más grande */}
           <NavLink
-            to="/Academia-orlando-de-leon"
+            to="/"
             className="flex items-center gap-4 group" /* Aumentado gap a 4 */
             onClick={closeMobileMenu}
           >
