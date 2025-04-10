@@ -1,113 +1,124 @@
 import React from 'react';
-// Importa los iconos necesarios
 import { Facebook, Twitter, Instagram, Mail, MapPin, Phone } from 'lucide-react';
-// Importa el logo
-import joelLogo from '../assets/images/joellogo.jpg'; // **¡Ajusta la ruta si es necesario!**
+import joelLogo from '../assets/images/joellogo.jpg';
 
-// Componente Footer
 const Footer: React.FC = () => {
-  // --- Configuración / Placeholders ---
   const academyName = "Academia Orlando de León";
-  const academySlogan = "Forjando el talento del mañana con dedicación y disciplina hoy."; // O un slogan corto
-  const address = "Dirección Ejemplo 123, Nagua, Rep. Dom."; // Usando ubicación del contexto
-  const phone = "+1-809-XXX-XXXX"; // ** REEMPLAZAR **
-  const email = "info@academiaorlandoleon.com"; // ** REEMPLAZAR **
-  const facebookUrl = "#"; // ** REEMPLAZAR con tu URL real **
-  const twitterUrl = "#"; // ** REEMPLAZAR con tu URL real **
-  const instagramUrl = "#"; // ** REEMPLAZAR con tu URL real **
+  const academySlogan = "Forjando el talento del mañana con dedicación y disciplina hoy.";
+  const address = "Dirección Ejemplo 123, Nagua, Rep. Dom.";
+  const phone = "+1-809-XXX-XXXX";
+  const email = "info@academiaorlandoleon.com";
+  const socialLinks = [
+    { url: "#", icon: Facebook, label: "Facebook" },
+    { url: "#", icon: Twitter, label: "Twitter" },
+    { url: "#", icon: Instagram, label: "Instagram" }
+  ];
   const currentYear = new Date().getFullYear();
-  // --- Fin Configuración ---
-
-  // Componente reutilizable para links de redes sociales
-  const SocialLink: React.FC<{ href: string; icon: React.ElementType; label: string }> =
-    ({ href, icon: Icon, label }) => (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label={label}
-      className="p-2 bg-white/10 rounded-full text-slate-300 hover:bg-white/20 hover:text-white transition-colors duration-200"
-    >
-      <Icon className="h-5 w-5" /> {/* Tamaño iconos sociales */}
-    </a>
-  );
+  const navLinks = [
+    { path: "/", label: "Inicio" },
+    { path: "/gallery", label: "Galería" },
+    { path: "/story", label: "Historia" },
+    { path: "/donate", label: "Donaciones" }
+  ];
 
   return (
-    <footer className="bg-[#071f43]"> {/* Fondo azul oscuro del Navbar */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8"> {/* Padding ajustado */}
-
-        {/* Grid principal del Footer */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 mb-12">
-
-          {/* Columna 1: Logo y Descripción */}
-          <div className="sm:col-span-2 lg:col-span-1"> {/* Ocupa más en sm */}
-            <img
-              src={joelLogo}
-              alt={`Logo ${academyName}`}
-              className="h-16 w-auto mb-4 rounded-md" // Logo más grande y con borde suave
-            />
-            <h3 className="text-lg font-semibold text-white mb-2">{academyName}</h3>
-            <p className="text-slate-400 text-sm leading-relaxed">
-              {academySlogan}
-            </p>
-          </div>
-
-          {/* Columna 2: Enlaces Rápidos */}
-          <div>
-            <h4 className="text-sm font-semibold uppercase tracking-wider text-slate-200 mb-4">Navegación</h4>
-            <ul className="space-y-2">
-              <li><a href="/" className="text-slate-400 hover:text-white text-sm transition-colors duration-200">Inicio</a></li>
-              <li><a href="/gallery" className="text-slate-400 hover:text-white text-sm transition-colors duration-200">Galería</a></li>
-              <li><a href="/story" className="text-slate-400 hover:text-white text-sm transition-colors duration-200">Historia</a></li>
-              <li><a href="/donate" className="text-slate-400 hover:text-white text-sm transition-colors duration-200">Donaciones</a></li>
-              {/* Añade más enlaces si es necesario */}
-            </ul>
-          </div>
-
-          {/* Columna 3: Contacto */}
-          <div>
-             <h4 className="text-sm font-semibold uppercase tracking-wider text-slate-200 mb-4">Contacto</h4>
-             <ul className="space-y-3 text-slate-400 text-sm">
-              <li className="flex items-start">
-                <MapPin className="h-4 w-4 mr-2 mt-0.5 flex-shrink-0 text-slate-500" />
-                <span>{address}</span>
-              </li>
-              <li className="flex items-center">
-                <Phone className="h-4 w-4 mr-2 flex-shrink-0 text-slate-500" />
-                <a href={`tel:${phone}`} className="hover:text-white transition-colors duration-200">{phone}</a>
-              </li>
-              <li className="flex items-center">
-                <Mail className="h-4 w-4 mr-2 flex-shrink-0 text-slate-500" />
-                <a href={`mailto:${email}`} className="hover:text-white transition-colors duration-200">{email}</a>
-              </li>
-            </ul>
-          </div>
-
-          {/* Columna 4: Redes Sociales */}
-          <div>
-             <h4 className="text-sm font-semibold uppercase tracking-wider text-slate-200 mb-4">Síguenos</h4>
-             <div className="flex space-x-3"> {/* Espacio entre iconos */}
-                <SocialLink href={facebookUrl} icon={Facebook} label="Facebook de la Academia" />
-                <SocialLink href={twitterUrl} icon={Twitter} label="Twitter de la Academia" />
-                <SocialLink href={instagramUrl} icon={Instagram} label="Instagram de la Academia" />
-                {/* Añade más redes si es necesario */}
+    <footer className="bg-gradient-to-b from-[#071f43] to-[#0a1a36] text-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+          
+          {/* Columna Logo y Descripción */}
+          <div className="lg:col-span-2 space-y-6">
+            <div className="flex items-center gap-4">
+              <img 
+                src={joelLogo} 
+                alt={`Logo ${academyName}`}
+                className="h-20 w-20 rounded-full border-2 border-blue-400/50 object-cover"
+              />
+              <div>
+                <h3 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-300 to-blue-100">
+                  {academyName}
+                </h3>
+                <p className="text-blue-100/80 text-sm mt-1">{academySlogan}</p>
+              </div>
+            </div>
+            <div className="flex space-x-4">
+              {socialLinks.map((social, index) => (
+                <a
+                  key={index}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-3 bg-white/5 rounded-full hover:bg-white/10 transition-all duration-300 hover:-translate-y-1"
+                  aria-label={social.label}
+                >
+                  <social.icon className="h-5 w-5 text-blue-300" />
+                </a>
+              ))}
             </div>
           </div>
 
-        </div> {/* Fin del grid principal */}
+          {/* Columna Navegación */}
+          <div>
+            <h4 className="text-sm font-semibold uppercase tracking-wider text-blue-300 mb-6 pb-2 border-b border-blue-400/20">
+              Navegación
+            </h4>
+            <ul className="space-y-3">
+              {navLinks.map((link, index) => (
+                <li key={index}>
+                  <a 
+                    href={link.path}
+                    className="flex items-center text-blue-100/90 hover:text-white group transition-colors duration-200"
+                  >
+                    <span className="w-2 h-2 bg-blue-400 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-        {/* Separador y Copyright */}
-        <div className="border-t border-white/10 mt-12 pt-8 text-center">
-          <p className="text-sm text-slate-400">
-            &copy; {currentYear} {academyName}. Todos los derechos reservados. <span className="hidden sm:inline">|</span> <span className="block sm:inline mt-1 sm:mt-0">Nagua, Rep. Dom.</span>
-          </p>
-          {/* Podrías añadir links a Política de Privacidad / Términos aquí si los tienes */}
-          {/* <p className="text-xs text-slate-500 mt-2">
-            <a href="/privacy" className="hover:text-slate-300">Política de Privacidad</a> | <a href="/terms" className="hover:text-slate-300">Términos de Servicio</a>
-          </p> */}
+          {/* Columna Contacto */}
+          <div>
+            <h4 className="text-sm font-semibold uppercase tracking-wider text-blue-300 mb-6 pb-2 border-b border-blue-400/20">
+              Contacto
+            </h4>
+            <ul className="space-y-4">
+              <li className="flex items-start">
+                <div className="p-2 bg-blue-500/10 rounded-lg mr-3">
+                  <MapPin className="h-5 w-5 text-blue-300" />
+                </div>
+                <span className="text-blue-100/90">{address}</span>
+              </li>
+              <li className="flex items-center">
+                <div className="p-2 bg-blue-500/10 rounded-lg mr-3">
+                  <Phone className="h-5 w-5 text-blue-300" />
+                </div>
+                <a href={`tel:${phone}`} className="text-blue-100/90 hover:text-white transition-colors duration-200">
+                  {phone}
+                </a>
+              </li>
+              <li className="flex items-center">
+                <div className="p-2 bg-blue-500/10 rounded-lg mr-3">
+                  <Mail className="h-5 w-5 text-blue-300" />
+                </div>
+                <a href={`mailto:${email}`} className="text-blue-100/90 hover:text-white transition-colors duration-200">
+                  {email}
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
 
-      </div> {/* Fin max-w-7xl */}
+        {/* Copyright */}
+        <div className="pt-8 mt-8 border-t border-blue-400/10 text-center">
+          <p className="text-sm text-blue-200/70">
+            &copy; {currentYear} {academyName}. Todos los derechos reservados.
+          </p>
+          <p className="text-xs text-blue-400/50 mt-2">
+            Diseñado con pasión por el béisbol
+          </p>
+        </div>
+      </div>
     </footer>
   );
 };

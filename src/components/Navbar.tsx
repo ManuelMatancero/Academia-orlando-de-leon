@@ -1,105 +1,105 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { NavLink } from "react-router-dom";
-import { Menu, X } from "lucide-react";
-import logo from "../assets/images/joellogo.jpg"; // Asegúrate que la ruta sea correcta
+import { NavLink, useMatch, useResolvedPath } from 'react-router-dom';
+import { Menu, X, Home, Image, BookOpen, HeartHandshake } from "lucide-react";
+import logo from "../assets/images/joellogo.jpg";
 
-// Añade ': React.FC' para tipar el componente funcional en TypeScript
+const NavLinkItem: React.FC<{ to: string; icon: React.ReactNode; children: React.ReactNode }> = ({ to, icon, children }) => {
+  const resolvedPath = useResolvedPath(to);
+  const isActive = useMatch({ path: resolvedPath.pathname, end: true });
+  
+  return (
+    <NavLink
+      to={to}
+      className={`relative px-4 py-2 rounded-lg flex items-center gap-2 transition-all duration-300 ${
+        isActive
+          ? "text-white bg-blue-600/20"
+          : "text-white/90 hover:text-white hover:bg-white/10"
+      }`}
+    >
+      {icon}
+      <span>{children}</span>
+      <span className={`absolute left-1/2 -bottom-1 h-0.5 w-4 bg-blue-400 transition-all duration-300 ${
+        isActive ? 'opacity-100 -translate-x-1/2' : 'opacity-0 translate-x-0'
+      }`}></span>
+    </NavLink>
+  );
+};
+
 const Navbar: React.FC = () => {
-  const [isOpen, setIsOpen] = useState<boolean>(false); // Tipado explícito para el estado
-  const [isVisible, setIsVisible] = useState<boolean>(true); // Tipado explícito
-  const lastScrollY = useRef<number>(0); // Tipado explícito para el ref
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isVisible, setIsVisible] = useState<boolean>(true);
+  const [scrolled, setScrolled] = useState<boolean>(false);
+  const lastScrollY = useRef<number>(0);
 
   const navLinks = [
-    { to: "/", label: "Inicio" },
-    { to: "/gallery", label: "Galería" },
-    { to: "/story", label: "Historia" },
-    { to: "/donate", label: "Donaciones" },
+    { to: "/", label: "Inicio", icon: <Home className="w-5 h-5" /> },
+    { to: "/gallery", label: "Galería", icon: <Image className="w-5 h-5" /> },
+    { to: "/story", label: "Historia", icon: <BookOpen className="w-5 h-5" /> },
+    { to: "/donate", label: "Donaciones", icon: <HeartHandshake className="w-5 h-5" /> },
   ];
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
+      setScrolled(currentScrollY > 10);
 
       if (currentScrollY <= 10) {
         setIsVisible(true);
       } else {
-        // Usamos una pequeña 'debounce' o umbral para evitar cambios rápidos en scroll muy corto
-        if (currentScrollY > lastScrollY.current + 5) { // Ocultar solo si baja más de 5px
+        if (currentScrollY > lastScrollY.current + 5) {
           setIsVisible(false);
-          // Solo cierra el menú si estaba abierto Y la navbar se está ocultando
-          setIsOpen(prevOpen => (prevOpen ? false : prevOpen));
-        } else if (currentScrollY < lastScrollY.current - 5) { // Mostrar si sube más de 5px
+          setIsOpen(false);
+        } else if (currentScrollY < lastScrollY.current - 5) {
           setIsVisible(true);
         }
       }
-      // Actualizar solo si el cambio es significativo para evitar actualizaciones constantes del ref
+      
       if (Math.abs(currentScrollY - lastScrollY.current) > 5 || currentScrollY <= 10) {
-         lastScrollY.current = currentScrollY;
+        lastScrollY.current = currentScrollY;
       }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-    // No añadir dependencias aquí para que se ejecute solo al montar/desmontar
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const closeMobileMenu = () => setIsOpen(false);
 
   return (
-    // Navbar principal
-    // Se eliminaron los comentarios DENTRO de los ${...}
     <nav className={`
-      bg-[#071f43] backdrop-blur-md shadow-lg ring-1 ring-white/10
       fixed top-0 left-0 right-0 z-50
-      transition-transform duration-300 ease-in-out
+      transition-all duration-500 ease-in-out
       ${isVisible ? 'translate-y-0' : '-translate-y-full'}
+      ${scrolled ? 'bg-[#071f43]/95 backdrop-blur-md shadow-xl' : 'bg-[#071f43] backdrop-blur-sm'}
+      border-b ${scrolled ? 'border-blue-400/20' : 'border-transparent'}
     `}>
-      {/* Comentario movido aquí: La clase anterior aplica la transformación para ocultar/mostrar */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
-          {/* Logo y Nombre */}
+        <div className="flex justify-between items-center h-24"> {/* Aumentado a h-24 */}
+          {/* Logo y Nombre - Versión más grande */}
           <NavLink
             to="/"
-            className="flex items-center gap-3 group"
+            className="flex items-center gap-4 group" /* Aumentado gap a 4 */
             onClick={closeMobileMenu}
           >
-            <img src={logo} alt="Logo Academia Orlando de León" className="h-10 w-auto" />
-            <span className="text-white font-bold text-lg sm:text-xl tracking-wide group-hover:text-blue-200 transition-colors duration-200">
-              Academia Orlando de León
+            <img 
+              src={logo} 
+              alt="Logo Academia Orlando de León" 
+              className={`h-16 w-16 transition-all duration-300 rounded-full object-cover border-2 ${
+                scrolled ? 'border-blue-400/50' : 'border-white/50'
+              }`} /* Aumentado a h-16 w-16 */
+            />
+            <span className="text-white font-bold text-xl tracking-tight group-hover:text-blue-300 transition-colors duration-300">
+              <span className="block leading-tight text-2xl">Academia</span> {/* Aumentado a text-2xl */}
+              <span className="block text-blue-300 text-lg">Orlando de León</span> {/* Aumentado a text-lg */}
             </span>
           </NavLink>
 
           {/* Navegación Desktop */}
-          <div className="hidden md:flex gap-8 font-medium items-center">
+          <div className="hidden md:flex gap-1">
             {navLinks.map((link) => (
-              <NavLink
-                key={link.to}
-                to={link.to}
-                // Usar una función para className es más limpio en TSX
-                className={({ isActive }) =>
-                  `relative transition-colors duration-200 group pb-1 ${
-                    isActive
-                      ? "text-blue-300 font-semibold"
-                      : "text-white hover:text-blue-200"
-                  }`
-                }
-              >
-                {({ isActive }) => (
-                  <>
-                    {link.label}
-                    <span
-                      className={`absolute left-0 -bottom-0.5 h-0.5 bg-blue-400 transition-all duration-300 ease-out ${
-                        isActive ? "w-full opacity-100" : "w-0 group-hover:w-full opacity-50 group-hover:opacity-100"
-                      }`}
-                      aria-hidden="true"
-                    ></span>
-                  </>
-                )}
-              </NavLink>
+              <NavLinkItem key={link.to} to={link.to} icon={link.icon}>
+                {link.label}
+              </NavLinkItem>
             ))}
           </div>
 
@@ -107,12 +107,18 @@ const Navbar: React.FC = () => {
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-400 p-1 rounded-md"
+              className={`p-3 rounded-lg transition-all duration-300 ${
+                isOpen ? 'bg-blue-600/30 text-white' : 'text-white/90 hover:text-white hover:bg-white/10'
+              }`} /* Aumentado padding a p-3 */
               aria-label="Toggle menu"
               aria-expanded={isOpen}
-              type="button" // Buena práctica añadir type="button"
+              type="button"
             >
-              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              {isOpen ? (
+                <X className="h-7 w-7" strokeWidth={2.5} /> /* Aumentado a h-7 w-7 */
+              ) : (
+                <Menu className="h-7 w-7" strokeWidth={2.5} /> /* Aumentado a h-7 w-7 */
+              )}
             </button>
           </div>
         </div>
@@ -121,27 +127,36 @@ const Navbar: React.FC = () => {
       {/* Menú Móvil Desplegable */}
       <div
         className={`
-          md:hidden overflow-hidden transition-all duration-300 ease-in-out
-          bg-[#0a2a58]/90 backdrop-blur-md shadow-lg
-          ${isOpen && isVisible ? "max-h-60 opacity-100 border-t border-white/10" : "max-h-0 opacity-0"}
+          md:hidden overflow-hidden transition-all duration-500 ease-in-out
+          bg-gradient-to-b from-[#0a2a58] to-[#071f43] shadow-xl
+          ${isOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'}
         `}
       >
-        <div className="flex flex-col px-4 pb-4 pt-2 space-y-3 font-medium">
-          {navLinks.map((link) => (
-            <NavLink
-              key={link.to}
-              to={link.to}
-              onClick={closeMobileMenu}
-              // Usar una función para className es más limpio en TSX
-              className={({ isActive }) =>
-                `block py-2 transition-colors duration-200 ${
-                  isActive ? "text-blue-300 font-semibold" : "text-white hover:text-blue-200"
-                }`
-              }
-            >
-              {link.label}
-            </NavLink>
-          ))}
+        <div className="flex flex-col px-4 pb-8 pt-4 space-y-2">
+          {navLinks.map((link) => {
+            const resolvedPath = useResolvedPath(link.to);
+            const isActive = useMatch({ path: resolvedPath.pathname, end: true });
+            
+            return (
+              <NavLink
+                key={link.to}
+                to={link.to}
+                onClick={closeMobileMenu}
+                className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 ${
+                  isActive 
+                    ? 'bg-blue-600/30 text-white font-medium' 
+                    : 'text-white/90 hover:text-white hover:bg-white/10'
+                }`}
+              >
+                <span className={`p-2 rounded-lg ${
+                  isActive ? 'bg-blue-400/20' : 'bg-white/5'
+                }`}>
+                  {link.icon}
+                </span>
+                <span className="text-lg">{link.label}</span> {/* Aumentado a text-lg */}
+              </NavLink>
+            );
+          })}
         </div>
       </div>
     </nav>
