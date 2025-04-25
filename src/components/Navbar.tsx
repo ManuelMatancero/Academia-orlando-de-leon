@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { NavLink, useMatch, useResolvedPath } from 'react-router-dom';
 import { Menu, X, Home, Image, BookOpen, HeartHandshake } from "lucide-react";
-import logo from "../assets/images/joellogo.jpg";
+import logo from "../assets/images/joellogo.png";
 
 const NavLinkItem: React.FC<{ to: string; icon: React.ReactNode; children: React.ReactNode }> = ({ to, icon, children }) => {
   const resolvedPath = useResolvedPath(to);
@@ -84,7 +84,7 @@ const Navbar: React.FC = () => {
             <img 
               src={logo} 
               alt="Logo Academia Orlando de León" 
-              className={`h-16 w-16 transition-all duration-300 rounded-full object-cover border-2 ${
+              className={`bg-white h-16 w-16 transition-all duration-300 rounded-full object-cover border-2${
                 scrolled ? 'border-blue-400/50' : 'border-white/50'
               }`} /* Aumentado a h-16 w-16 */
             />

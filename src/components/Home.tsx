@@ -9,7 +9,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/effect-fade';
 import { Users, Building, ClipboardList, Loader2, UserCircle, Mail, Phone, Trophy, Award, Activity, BarChart2, Image as ImageIcon } from 'lucide-react';
 
-import joelLogo from '../assets/images/joellogo.jpg';
+import joelLogo from '../assets/images/joellogo.png';
 import joelpic from "../assets/images/joel.jpg";
 import fieldBg from "../assets/images/baseballfield.png";
 
@@ -64,7 +64,7 @@ const Home: React.FC = () => {
       <img
         src={joelLogo}
         alt="Logo Academia"
-        className="h-28 w-28 md:h-36 md:w-36 object-cover rounded-full shadow-2xl border-4 border-white/80"
+        className="bg-white h-28 w-28 md:h-36 md:w-36 object-cover rounded-full shadow-2xl border-4 border-white/80"
       />
     </div>
     

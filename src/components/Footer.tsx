@@ -1,6 +1,6 @@
 import React from 'react';
 import { Facebook, Twitter, Instagram, Mail, MapPin, Phone } from 'lucide-react';
-import joelLogo from '../assets/images/joellogo.jpg';
+import joelLogo from '../assets/images/joellogo.png';
 import { Link } from 'react-router-dom';
 
 const Footer: React.FC = () => {
@@ -33,7 +33,7 @@ const Footer: React.FC = () => {
               <img
                 src={joelLogo}
                 alt={`Logo ${academyName}`}
-                className="h-20 w-20 rounded-full border-2 border-blue-400/50 object-cover"
+                className="bg-white h-20 w-20 rounded-full border-2 border-blue-400/50 object-cover"
               />
               <div>
                 <h3 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-300 to-blue-100">

@@ -1,7 +1,7 @@
 import React from 'react';
 // Importa iconos que podrías usar
 import { Building, TrendingUp, Target, CheckCircle, Image as ImageIcon } from 'lucide-react';
-import logo from "../assets/images/joellogo.jpg";
+import logo from "../assets/images/joellogo.png";
 
 const Story: React.FC = () => {
   return (
@@ -26,7 +26,7 @@ const Story: React.FC = () => {
                 src={logo} // Asegúrate que 'logo' es la variable correcta para tu joellogo.jpg
                 alt="Logo Academia Orlando de León"
                 // Clases añadidas para ajustar y redondear la imagen:
-                className="w-full h-full object-cover rounded-xl"
+                className="bg-white w-full object-cover rounded-xl"
               />
              {/* <img src="/path/to/inicio-image.jpg" alt="Inicios de la academia" className="w-full h-full object-cover rounded-xl"/> */}
           </div>
