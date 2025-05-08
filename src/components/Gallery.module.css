@@ -1,0 +1,62 @@
+/* Gallery.module.css */
+.lightboxBackdrop {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(8px);
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  .lightboxBackdropOpen {
+    opacity: 1;
+  }
+  
+  .lightboxContent {
+    position: relative;
+    background-color: #fff;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    max-width: 90%;
+    max-height: 90%;
+    overflow: hidden;
+    transform: scale(0.95);
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  }
+  
+  .lightboxContentOpen {
+    transform: scale(1);
+  }
+  
+  .lightboxContent img {
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 85vh; /* Ajusta según necesites, ej. 85% de la altura de la ventana */
+    object-fit: contain;
+  }
+  
+  .lightboxCloseButton { /* Cambiado de lightbox-close-button a camelCase para consistencia con styles object */
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border-radius: 50%;
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    z-index: 60; /* Encima de la imagen */
+    border: none;
+    line-height: 0; /* Para mejor alineación del ícono SVG */
+  }
+  
+  .lightboxCloseButton:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+  }
