@@ -127,9 +127,9 @@ const Home: React.FC = () => {
   ];
 
   const statsData = [
-    { value: "20+", label: "Años de Experiencia" },
-    { value: "250+", label: "Atletas Formados" },
-    { value: "60+", label: "En Ligas Profesionales" },
+    { value: "15+", label: "Años de Experiencia" },
+    { value: "68+", label: "Atletas Formados" },
+    { value: "10+", label: "En Ligas Profesionales" },
     { value: "100%", label: "Compromiso y Pasión" }
   ];
 

@@ -1,0 +1,67 @@
+/* VideoGallery.module.css */
+
+.lightboxBackdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  opacity: 0;
+  transition: opacity 300ms ease-in-out;
+}
+
+.lightboxBackdropOpen {
+  opacity: 1;
+}
+
+.videoLightboxContent {
+  position: relative;
+  width: 90%;
+  max-width: 960px;
+  padding-top: 56.25%; /* Proporción 16:9 para video */
+  background-color: #000;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  transform: scale(0.95);
+  opacity: 0;
+  transition: opacity 300ms ease-in-out, transform 300ms ease-in-out;
+}
+
+.lightboxContentOpen {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.youtubePlayer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.lightboxCloseButton {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  z-index: 60;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 200ms ease-in-out, transform 200ms ease-in-out;
+}
+
+.lightboxCloseButton:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+  transform: scale(1.1);
+}

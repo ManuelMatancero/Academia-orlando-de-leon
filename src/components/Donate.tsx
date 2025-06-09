@@ -63,30 +63,7 @@ const Donate: React.FC = () => {
               </button>
             </div>
 
-            {/* Tarjeta Patreon */}
-            <div className="bg-white rounded-xl shadow-xl overflow-hidden flex flex-col p-8 lg:p-10 transition-shadow duration-300 hover:shadow-2xl">
-              {/* Logo */}
-               <img
-                // Usar un logo de Patreon que se vea bien sobre blanco, preferiblemente SVG
-                src={patreonLogo} // Ejemplo de logo negro
-                alt="Patreon Logo"
-                className="h-8 sm:h-10 mb-8 self-start" // Altura diferente para este logo
-              />
-              {/* Título */}
-              <h3 className="text-2xl font-semibold text-slate-700 mb-3">Conviértete en Patrocinador</h3>
-              {/* Descripción */}
-              <p className="text-slate-600 mb-6 flex-grow">
-                Únete a nuestra comunidad en Patreon. Apóyanos mensualmente y recibe acceso a contenido exclusivo, actualizaciones y beneficios especiales.
-              </p>
-              {/* Botón CTA */}
-              <button
-                onClick={() => window.open(YOUR_PATREON_LINK, '_blank', 'noopener,noreferrer')}
-                className="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-lg shadow-sm text-base font-medium text-white bg-[#FF424D] hover:bg-[#E63941] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#FF424D] transition duration-300 ease-in-out transform hover:scale-[1.02]" // Color oficial Patreon
-              >
-                <Heart className="mr-2 -ml-1 h-5 w-5 fill-current" /> {/* Corazón relleno */}
-                Apoyar en Patreon
-              </button>
-            </div>
+           
           </div>
         </section>
 

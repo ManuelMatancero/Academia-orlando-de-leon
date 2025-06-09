@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { NavLink, useMatch, useResolvedPath } from 'react-router-dom';
-import { Menu, X, Home, Image, BookOpen, HeartHandshake } from "lucide-react";
+// 1. IMPORTAR el nuevo ícono 'Video'
+import { Menu, X, Home, Image, BookOpen, HeartHandshake, Video } from "lucide-react"; 
 import logo from "../assets/images/joellogo.png";
 
 const NavLinkItem: React.FC<{ to: string; icon: React.ReactNode; children: React.ReactNode }> = ({ to, icon, children }) => {
@@ -31,9 +32,12 @@ const Navbar: React.FC = () => {
   const [scrolled, setScrolled] = useState<boolean>(false);
   const lastScrollY = useRef<number>(0);
 
+  // 2. AÑADIR el nuevo enlace a la lista de navegación
   const navLinks = [
     { to: "/", label: "Inicio", icon: <Home className="w-5 h-5" /> },
     { to: "/gallery", label: "Galería", icon: <Image className="w-5 h-5" /> },
+    // El nuevo enlace para la Videoteca:
+    { to: "/videoteca", label: "Videoteca", icon: <Video className="w-5 h-5" /> },
     { to: "/story", label: "Historia", icon: <BookOpen className="w-5 h-5" /> },
     { to: "/donate", label: "Donaciones", icon: <HeartHandshake className="w-5 h-5" /> },
   ];
@@ -74,11 +78,11 @@ const Navbar: React.FC = () => {
       border-b ${scrolled ? 'border-blue-400/20' : 'border-transparent'}
     `}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-24"> {/* Aumentado a h-24 */}
-          {/* Logo y Nombre - Versión más grande */}
+        <div className="flex justify-between items-center h-24">
+          {/* Logo y Nombre */}
           <NavLink
             to="/"
-            className="flex items-center gap-4 group" /* Aumentado gap a 4 */
+            className="flex items-center gap-4 group"
             onClick={closeMobileMenu}
           >
             <img 
@@ -86,11 +90,11 @@ const Navbar: React.FC = () => {
               alt="Logo Academia Orlando de León" 
               className={`bg-white h-16 w-16 transition-all duration-300 rounded-full object-cover border-2${
                 scrolled ? 'border-blue-400/50' : 'border-white/50'
-              }`} /* Aumentado a h-16 w-16 */
+              }`}
             />
             <span className="text-white font-bold text-xl tracking-tight group-hover:text-blue-300 transition-colors duration-300">
-              <span className="block leading-tight text-2xl">Academia</span> {/* Aumentado a text-2xl */}
-              <span className="block text-blue-300 text-lg">Orlando de León</span> {/* Aumentado a text-lg */}
+              <span className="block leading-tight text-2xl">Academia</span>
+              <span className="block text-blue-300 text-lg">Orlando de León</span>
             </span>
           </NavLink>
 
@@ -109,15 +113,15 @@ const Navbar: React.FC = () => {
               onClick={() => setIsOpen(!isOpen)}
               className={`p-3 rounded-lg transition-all duration-300 ${
                 isOpen ? 'bg-blue-600/30 text-white' : 'text-white/90 hover:text-white hover:bg-white/10'
-              }`} /* Aumentado padding a p-3 */
+              }`}
               aria-label="Toggle menu"
               aria-expanded={isOpen}
               type="button"
             >
               {isOpen ? (
-                <X className="h-7 w-7" strokeWidth={2.5} /> /* Aumentado a h-7 w-7 */
+                <X className="h-7 w-7" strokeWidth={2.5} />
               ) : (
-                <Menu className="h-7 w-7" strokeWidth={2.5} /> /* Aumentado a h-7 w-7 */
+                <Menu className="h-7 w-7" strokeWidth={2.5} />
               )}
             </button>
           </div>
@@ -153,7 +157,7 @@ const Navbar: React.FC = () => {
                 }`}>
                   {link.icon}
                 </span>
-                <span className="text-lg">{link.label}</span> {/* Aumentado a text-lg */}
+                <span className="text-lg">{link.label}</span>
               </NavLink>
             );
           })}
