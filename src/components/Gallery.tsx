@@ -115,7 +115,7 @@ const Gallery: React.FC = () => {
         <div className="text-center mb-12 lg:mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-slate-800 mb-3">Galería de Momentos</h2>
           <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-            Explora los momentos capturados de nuestros entrenamientos, juegos y eventos especiales.
+            Explora los momentos de nuestros entrenamientos, juegos y eventos especiales.
           </p>
         </div>
 
