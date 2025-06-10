@@ -13,7 +13,7 @@ const Story: React.FC = () => {
 
         {/* Título Principal de la Sección */}
         <div className="text-center mb-12 lg:mb-20">
-          <h2 className="text-3xl sm:text-4xl font-bold text-slate-800 mb-3">Del Polvo al Diamante: La Inspiradora Historia de la Academia de Béisbol Orlando de León</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold text-slate-800 mb-3">La Inspiradora Historia de la Academia de Béisbol Orlando de León</h2>
           <p className="text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
             En el corazón del distrito municipal de San José de Matanzas, donde el sol caribeño baña los campos de caña y los sueños de los jóvenes vuelan tan alto como una pelota recién bateada, nació en 2010 una institución que se convertiría en un faro de esperanza: la Academia de Béisbol Orlando de León. Forjada a partir de la pasión y la visión de un hombre, esta academia no solo ha pulido diamantes en el terreno de juego, sino que ha transformado vidas, ofreciendo un camino de disciplina y propósito a la juventud de escasos recursos de la región.
           </p>
