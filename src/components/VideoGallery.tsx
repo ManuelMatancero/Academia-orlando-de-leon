@@ -32,11 +32,11 @@ const VideoGallery: React.FC = () => {
   const [selectedVideoId, setSelectedVideoId] = useState<string | null>(null);
 
   // --- CONFIGURACIÓN DE YOUTUBE (Comentada temporalmente) ---
-  // const YOUTUBE_API_KEY = import.meta.env.VITE_YOUTUBE_API_KEY;
-  // const YOUTUBE_CHANNEL_ID = 'UC_x5XG1OV2P6uZZ5FSM9Ttw'; 
-  // const MAX_RESULTS = 12;
+   const YOUTUBE_API_KEY = "AIzaSyCuJWhW9ys9mLShK_hPDZ3U7H3QyulDPtA";
+   const YOUTUBE_CHANNEL_ID = "UCUtTLl-Kd5Ucpgl0bHJE8zg"; 
+   const MAX_RESULTS = 12;
 
-  /*
+  
   // 3. TODO EL CÓDIGO PARA LLAMAR A LA API (useEffect) SE HA COMENTADO.
   //    Esto evita que el componente intente buscar datos.
   useEffect(() => {
@@ -66,7 +66,7 @@ const VideoGallery: React.FC = () => {
 
     fetchVideos();
   }, [YOUTUBE_API_KEY, YOUTUBE_CHANNEL_ID]);
-  */
+  
   
   // Las funciones del Lightbox se conservan para el futuro
   const openLightbox = (videoId: string) => {

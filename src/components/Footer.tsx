@@ -6,9 +6,9 @@ import { Link } from 'react-router-dom';
 const Footer: React.FC = () => {
   const academyName = "Academia Orlando de León";
   const academySlogan = "Forjando el talento del mañana con dedicación y disciplina hoy.";
-  const address = "Dirección Ejemplo 123, Nagua, Rep. Dom.";
-  const phone = "+1-809-XXX-XXXX";
-  const email = "info@academiaorlandoleon.com";
+  const address = "Calle Silvia Aponte, Matancitas, San Jose de Matanzas, Nagua";
+  const phone = "+1-829-375-2540";
+  const email = "academiaorlandodeleon2025@gmail.com";
   const socialLinks = [
     { url: "#", icon: Facebook, label: "Facebook" },
     { url: "#", icon: Twitter, label: "Twitter" },
