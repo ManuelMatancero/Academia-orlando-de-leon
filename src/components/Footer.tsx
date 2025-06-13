@@ -116,7 +116,7 @@ const Footer: React.FC = () => {
             &copy; {currentYear} {academyName}. Todos los derechos reservados.
           </p>
           <p className="text-xs text-blue-400/50 mt-2">
-            Diseñado con pasión por el béisbol
+            Diseñado con pasión por el béisbol por SaranTech Inc 
           </p>
         </div>
       </div>

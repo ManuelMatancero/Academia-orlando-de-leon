@@ -171,12 +171,17 @@ const Home: React.FC = () => {
 
           <div className="mt-6 mb-10">
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="px-7 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+              <a
+                href="https://wa.me/18293752540?text=Hola%20me%20gustaria%20unirme%20a%20la%20Academia%20de%20Beisbol%20Orlando%20de%20Leon"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-7 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 text-center"
+              >
                 Únete Ahora
-              </button>
-              <button className="px-7 py-3 bg-transparent border-2 border-slate-200 text-slate-100 font-semibold rounded-lg hover:bg-white/10 hover:text-white hover:border-white transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-opacity-50">
+              </a>
+              {/* <button className="px-7 py-3 bg-transparent border-2 border-slate-200 text-slate-100 font-semibold rounded-lg hover:bg-white/10 hover:text-white hover:border-white transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-opacity-50">
                 Conoce Más
-              </button>
+              </button> */}
             </div>
           </div>
         </div>
@@ -348,10 +353,7 @@ const Home: React.FC = () => {
                   <p className="text-slate-500 text-sm mb-4 font-medium">{member.role === "Fundador & Director" ? "Más de 20 años en béisbol profesional" : "Especialista en talento juvenil"}</p>
                   <p className="text-slate-600 text-base leading-relaxed mb-5 flex-grow">{member.description}</p>
                   <div className="flex space-x-4 items-center mt-auto pt-4 border-t border-slate-200">
-                    <a href="mailto:info@academiadeleon.com" aria-label={`Enviar correo a ${member.name}`} className="text-slate-500 hover:text-blue-600 transition-colors duration-300 flex items-center space-x-1.5 group">
-                      <Mail className="h-5 w-5 group-hover:animate-pulse" /> <span className="text-sm">Email</span>
-                    </a>
-                    <a href="tel:+18091234567" aria-label={`Llamar a ${member.name}`} className="text-slate-500 hover:text-blue-600 transition-colors duration-300 flex items-center space-x-1.5 group">
+                    <a href="tel:+13473032018" aria-label={`Llamar a ${member.name}`} className="text-slate-500 hover:text-blue-600 transition-colors duration-300 flex items-center space-x-1.5 group">
                       <Phone className="h-5 w-5 group-hover:animate-pulse" /> <span className="text-sm">Teléfono</span>
                     </a>
                   </div>
@@ -372,14 +374,14 @@ const Home: React.FC = () => {
             Únete a la Academia Orlando de León y da el primer paso hacia tu futuro en el béisbol profesional. Contáctanos hoy mismo para más detalles.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="px-8 py-3.5 bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-lg shadow-lg hover:shadow-blue-500/40 transition-all duration-300 transform hover:scale-105 flex items-center justify-center text-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
-              <Mail className="h-5 w-5 mr-2.5" />
-              Solicitar Información
-            </button>
-            <button className="px-8 py-3.5 bg-transparent border-2 border-slate-400 hover:border-slate-200 text-slate-200 hover:text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center text-lg focus:outline-none focus:ring-2 focus:ring-slate-300 focus:ring-opacity-75">
-              <Phone className="h-5 w-5 mr-2.5" />
-              Llámanos Ahora
-            </button>
+            <a
+                href="https://wa.me/18293752540?text=Hola%20me%20gustaria%20unirme%20a%20la%20Academia%20de%20Beisbol%20Orlando%20de%20Leon"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-7 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 text-center"
+              >
+                Escribenos ahora
+              </a>
           </div>
         </div>
       </section>
