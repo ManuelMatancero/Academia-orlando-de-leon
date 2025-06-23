@@ -8,8 +8,8 @@ const Donate: React.FC = () => {
   // --- PLACEHOLDERS - ¡IMPORTANTE REEMPLAZAR! ---
   const YOUR_PAYPAL_LINK = 'https://www.paypal.com/donate/?hosted_button_id=YOUR_BUTTON_ID'; // Reemplaza con tu enlace real de PayPal
   const YOUR_PATREON_LINK = 'https://www.patreon.com/your_academy_username'; // Reemplaza con tu enlace real de Patreon
-  const YOUR_CONTACT_EMAIL = 'info@academiaorlandoleon.com'; // Reemplaza con tu email de contacto
-  const YOUR_CONTACT_PHONE = '+1-809-XXX-XXXX'; // Reemplaza con tu teléfono de contacto
+  const YOUR_CONTACT_EMAIL = 'academiaorlandodeleon2025@gmail.com'; // Reemplaza con tu email de contacto
+  const YOUR_CONTACT_PHONE = '+1-829-375-2540'; // Reemplaza con tu teléfono de contacto
   // --- FIN PLACEHOLDERS ---
 
   return (
@@ -40,20 +40,22 @@ const Donate: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
 
             {/* Tarjeta PayPal */}
-            <div className="bg-white rounded-xl shadow-xl overflow-hidden flex flex-col p-8 lg:p-10 transition-shadow duration-300 hover:shadow-2xl">
-              {/* Logo */}
+
+
+            {/* <div className="bg-white rounded-xl shadow-xl overflow-hidden flex flex-col p-8 lg:p-10 transition-shadow duration-300 hover:shadow-2xl">
+            
               <img
-                src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_111x69.jpg" // Logo oficial o uno estilizado
+                src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_111x69.jpg" 
                 alt="PayPal Logo"
-                className="h-12 sm:h-16 mb-6 self-start" // Ajusta altura y alineación
+                className="h-12 sm:h-16 mb-6 self-start" 
               />
-              {/* Título */}
+            
               <h3 className="text-2xl font-semibold text-slate-700 mb-3">Donación Única o Recurrente</h3>
-              {/* Descripción */}
-              <p className="text-slate-600 mb-6 flex-grow"> {/* flex-grow para empujar botón abajo */}
+            
+              <p className="text-slate-600 mb-6 flex-grow"> 
                 Realiza una contribución segura a través de PayPal. Puedes elegir donar una vez o configurar un apoyo mensual.
               </p>
-              {/* Botón CTA */}
+              
               <button
                 onClick={() => window.open(YOUR_PAYPAL_LINK, '_blank', 'noopener,noreferrer')}
                 className="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-lg shadow-sm text-base font-medium text-white bg-gradient-to-r from-blue-600 to-sky-500 hover:from-blue-700 hover:to-sky-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-300 ease-in-out transform hover:scale-[1.02]"
@@ -61,7 +63,7 @@ const Donate: React.FC = () => {
                 <DollarSign className="mr-2 -ml-1 h-5 w-5" />
                 Donar con PayPal
               </button>
-            </div>
+            </div> */}
 
            
           </div>
