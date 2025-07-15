@@ -1,3 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Lato:wght@400;700&family=Poppins:wght@700;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Estilo para un sutil grano en las imágenes */
+.grainy-image::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAUVBMVEWFhYWDg4N3d3dtbW17e3t1dXVpaWlpaWlpWVlZWZmZmZmanp6enp6enp6enp6enp6ZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZkHBwcdHR0lJSUlJSUlJSVivIGAAAAAHRSTlMAAAAAABQODxESFRoSJicwNjRGT0hNUm9tcXR2fedoAAAAAWJLR0QAiAUdSAAAAAlwSFlzAAALEwAACxMBAJqcGAAAAKtJREFUOMu90kKCoCAAALB3ja37/z/sK1tJhr2Q+gY5YxKBFKxY3zJd5Jgl7RGBC2S3QG0xJq3M5+iJao5haA4gQcDIbEPIUEP6P3p0cx4lOep7hseeh9C9d+3i3gP41vDr+Cs7wYP1AFjVjYfKqwveY5ZzVp7Uu/OW1ZCSm31X2WA2s3WzP2vL0nZEKjWzzt5xJLZ2z2iVv8+4f4xEzHeAAlx0AAAAAElFTkSuQmCC');
+    opacity: 0.1;
+    pointer-events: none;
+}

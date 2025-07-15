@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { NavLink, useMatch, useResolvedPath } from 'react-router-dom';
 // 1. IMPORTAR el nuevo ícono 'Video'
-import { Menu, X, Home, Image, BookOpen, HeartHandshake, Video } from "lucide-react"; 
+import { Menu, X, Home, Image, BookOpen, HeartHandshake, Video, Network } from "lucide-react"; 
 import logo from "../assets/images/joellogo.png";
 
 const NavLinkItem: React.FC<{ to: string; icon: React.ReactNode; children: React.ReactNode }> = ({ to, icon, children }) => {
@@ -37,7 +37,7 @@ const Navbar: React.FC = () => {
     { to: "/", label: "Inicio", icon: <Home className="w-5 h-5" /> },
     { to: "/gallery", label: "Galería", icon: <Image className="w-5 h-5" /> },
     // El nuevo enlace para la Videoteca:
-    { to: "/videoteca", label: "Videoteca", icon: <Video className="w-5 h-5" /> },
+    { to: "/videoteca", label: "Redes", icon: <Network className="w-5 h-5" /> },
     { to: "/story", label: "Historia", icon: <BookOpen className="w-5 h-5" /> },
     { to: "/donate", label: "Donaciones", icon: <HeartHandshake className="w-5 h-5" /> },
   ];

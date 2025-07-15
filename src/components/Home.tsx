@@ -31,12 +31,12 @@ import fieldBg from "../assets/images/baseballfield.png";
 import leon from '../assets/images/leon.jpg';
 
 // Nuevas imágenes importadas para Momentos Destacados
-import leon4 from '../assets/images/leon4.jpg';
-import leon5 from '../assets/images/leon5.jpg';
-import leon6 from '../assets/images/leon6.jpg';
-import leon7 from '../assets/images/leon7.jpg';
-import leon8 from '../assets/images/leon8.jpg';
-import leon9 from '../assets/images/leon9.jpg';
+import leon4 from '../assets/images/10.jpg';
+import leon5 from '../assets/images/11.jpg';
+import leon6 from '../assets/images/12.jpg';
+import leon7 from '../assets/images/13.jpg';
+import leon8 from '../assets/images/14.jpg';
+import leon9 from '../assets/images/15.jpg';
 
 
 // Reusable Feature Card Component

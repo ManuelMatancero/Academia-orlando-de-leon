@@ -1,216 +1,218 @@
-import React, { useState, useCallback, useEffect } from 'react';
-import { Loader2, X as IconX, PlayCircle, VideoOff } from 'lucide-react';
+import React, { useState } from 'react';
+import { Youtube, Facebook, Instagram, ArrowRight } from 'lucide-react';
 
-// Interfaz para definir la estructura de los datos de un video de YouTube
-interface YouTubeVideo {
-  id: {
-    videoId: string;
-  };
-  snippet: {
-    title: string;
-    thumbnails: {
-      high: {
-        url: string;
-      };
-    };
-  };
-}
+// Componente para una tarjeta de red social individual
+// Incluye un efecto de brillo que sigue al cursor y animaciones 3D.
+const SocialCard = ({ icon, platform, handle, url, colors }) => {
+  const [shineStyle, setShineStyle] = useState({});
 
-// Componente principal de la galería de videos
-const App = () => {
-  const [videos, setVideos] = useState<YouTubeVideo[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
-  const [selectedVideoId, setSelectedVideoId] = useState<string | null>(null);
+  const handleMouseMove = (e) => {
+    const { left, top, width, height } = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - left;
+    const y = e.clientY - top;
+    const shineX = (x / width) * 100;
+    const shineY = (y / height) * 100;
 
-  // --- Configuración de la API de YouTube ---
-  // Mover estas claves a variables de entorno en una aplicación de producción
-  const YOUTUBE_API_KEY = "AIzaSyCuJWhW9ys9mLShK_hPDZ3U7H3QyulDPtA";
-  const YOUTUBE_CHANNEL_ID = "UCUtTLl-Kd5Ucpgl0bHJE8zg";
-  const MAX_RESULTS = 12; // Número máximo de videos a obtener
-
-  // Efecto para buscar los videos del canal de YouTube cuando el componente se monta
-  useEffect(() => {
-    const fetchVideos = async () => {
-      if (!YOUTUBE_API_KEY) {
-        setError("La clave de API de YouTube no está configurada.");
-        setLoading(false);
-        return;
-      }
-
-      try {
-        const url = `https://www.googleapis.com/youtube/v3/search?key=${YOUTUBE_API_KEY}&channelId=${YOUTUBE_CHANNEL_ID}&part=snippet,id&order=date&maxResults=${MAX_RESULTS}&type=video`;
-        const response = await fetch(url);
-        
-        if (!response.ok) {
-          const errorData = await response.json();
-          console.error("Error de la API de YouTube:", errorData);
-          throw new Error(`Error en la API: ${errorData.error.message || response.statusText}`);
-        }
-
-        const data = await response.json();
-        
-        if (data.items && data.items.length > 0) {
-          // Filtra para asegurarse de que solo se procesan elementos con videoId
-          const validVideos = data.items.filter((item: any) => item.id.videoId);
-          setVideos(validVideos);
-        } else {
-          setError("No se encontraron videos en el canal o el canal no existe.");
-        }
-      } catch (err: any) {
-        console.error("Error al obtener videos de YouTube:", err);
-        setError(err.message || "No se pudieron cargar los videos. Verifica la conexión y la configuración.");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchVideos();
-  }, [YOUTUBE_API_KEY, YOUTUBE_CHANNEL_ID]); // Dependencias del efecto
-
-  // Función para abrir el reproductor de video (lightbox)
-  const openLightbox = (videoId: string) => {
-    setSelectedVideoId(videoId);
-    document.body.style.overflow = 'hidden'; // Evita el scroll del fondo
+    setShineStyle({
+      background: `radial-gradient(circle at ${shineX}% ${shineY}%, rgba(255, 255, 255, 0.25), transparent 40%)`,
+    });
   };
 
-  // Función para cerrar el lightbox (memorizada con useCallback)
-  const closeLightbox = useCallback(() => {
-    setSelectedVideoId(null);
-    document.body.style.overflow = ''; // Restaura el scroll
-  }, []);
+  const handleMouseLeave = () => {
+    setShineStyle({});
+  };
 
-  // Efecto para manejar el cierre del lightbox con la tecla "Escape"
-  useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        closeLightbox();
-      }
-    };
-    
-    if (selectedVideoId) {
-      window.addEventListener('keydown', handleKeyDown);
-    }
-    
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [selectedVideoId, closeLightbox]);
-
-  // Renderizado del componente
   return (
-    <div className="bg-gray-50 font-sans text-gray-800">
-      <div className="min-h-screen">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
-          <div className="text-center mb-12 lg:mb-16">
-            <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 tracking-tight mb-4">
-              Nuestra Videoteca
+    <a
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className={`group relative flex flex-col justify-between p-6 sm:p-8 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform-gpu hover:-translate-y-2 hover:scale-105 ${colors.gradient} ${colors.text} will-change-transform`}
+      style={{ transformStyle: 'preserve-3d' }}
+    >
+      <div 
+        className="absolute inset-0 transition-all duration-500 ease-out z-10" 
+        style={shineStyle}
+      ></div>
+      <div className="absolute -right-4 -bottom-4 opacity-10 group-hover:opacity-20 transform group-hover:scale-110 transition-all duration-500 ease-out z-0">
+        {React.cloneElement(icon, { size: 128, strokeWidth: 1.5 })}
+      </div>
+      <div className="relative z-20">
+        <div className="flex items-center gap-4 mb-4">
+          <div className={`p-3 rounded-full ${colors.iconBg}`}>
+            {React.cloneElement(icon, { size: 28, strokeWidth: 2 })}
+          </div>
+          <h2 className="text-2xl font-bold tracking-wide">{platform}</h2>
+        </div>
+        <p className={`text-lg opacity-90 font-medium mb-6`}>{handle}</p>
+      </div>
+      <div className="relative z-20 flex items-center font-semibold mt-auto text-sm uppercase tracking-wider">
+        Visitar perfil
+        <ArrowRight className="ml-2 h-5 w-5 transform group-hover:translate-x-1.5 transition-transform duration-300" />
+      </div>
+    </a>
+  );
+};
+
+// --- Componente principal de la página de Redes ---
+const App = () => {
+  const socialLinks = [
+    {
+      platform: 'YouTube',
+      handle: 'Canal Oficial',
+      url: 'https://www.youtube.com/channel/UCUtTLl-Kd5Ucpgl0bHJE8zg',
+      icon: <Youtube />,
+      colors: {
+        gradient: 'bg-gradient-to-br from-red-500 to-red-700',
+        text: 'text-white',
+        iconBg: 'bg-white bg-opacity-20',
+      },
+    },
+    // {
+    //   platform: 'Facebook',
+    //   handle: 'Página Oficial',
+    //   url: 'https://www.facebook.com/tupagina',
+    //   icon: <Facebook />,
+    //   colors: {
+    //     gradient: 'bg-gradient-to-br from-blue-600 to-blue-800',
+    //     text: 'text-white',
+    //     iconBg: 'bg-white bg-opacity-20',
+    //   },
+    // },
+    // {
+    //   platform: 'Instagram',
+    //   handle: '@tuUsuario',
+    //   url: 'https://www.instagram.com/tucuenta',
+    //   icon: <Instagram />,
+    //   colors: {
+    //     gradient: 'bg-gradient-to-br from-pink-500 via-red-500 to-yellow-500',
+    //     text: 'text-white',
+    //     iconBg: 'bg-white bg-opacity-20',
+    //   },
+    // },
+  ];
+
+  return (
+    // Contenedor principal con fondo oscuro
+    <div className="relative min-h-screen pt-20 w-full bg-[#111827] font-sans text-gray-800 overflow-hidden">
+      {/* Contenedor de las auroras animadas (fondo) */}
+      <div className="absolute top-0 left-0 w-full h-full z-0">
+        <div className="aurora-blob one"></div>
+        <div className="aurora-blob two"></div>
+        <div className="aurora-blob three"></div>
+        <div className="aurora-blob four"></div>
+      </div>
+      
+      {/* Contenido principal de la página */}
+      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 w-full">
+          <div className="text-center mb-16">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight mb-4 animate-fade-in-down">
+              Conecta con Nosotros
             </h1>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Explora nuestros últimos videos, tutoriales y resúmenes de eventos directamente desde nuestro canal de YouTube.
+            <p className="text-lg text-gray-300 max-w-3xl mx-auto animate-fade-in-down" style={{animationDelay: '200ms'}}>
+              Síguenos en nuestras plataformas para no perderte ninguna novedad, evento o contenido exclusivo.
             </p>
           </div>
 
-          {/* --- Estado de Carga --- */}
-          {loading && (
-            <div className="flex flex-col items-center justify-center text-center py-20">
-              <Loader2 className="h-12 w-12 text-indigo-600 animate-spin mb-4" />
-              <p className="text-gray-500 text-lg font-medium">Cargando videos...</p>
-            </div>
-          )}
-
-          {/* --- Estado de Error --- */}
-          {error && (
-            <div className="flex flex-col items-center justify-center text-center py-20 bg-red-50 border border-red-200 rounded-lg p-6 max-w-2xl mx-auto">
-              <VideoOff className="h-12 w-12 text-red-500 mb-4" />
-              <p className="text-red-800 text-xl font-semibold">¡Oops! Algo salió mal</p>
-              <p className="text-red-600 mt-2 text-center">{error}</p>
-            </div>
-          )}
-
-          {/* --- Galería de Videos --- */}
-          {!loading && !error && videos.length > 0 && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8">
-              {videos.map((video) => (
-                <div  
-                  key={video.id.videoId}  
-                  className="group relative bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 cursor-pointer"
-                  onClick={() => openLightbox(video.id.videoId)}
-                >
-                  <div className="relative aspect-video">
-                    <img
-                      src={video.snippet.thumbnails.high.url}
-                      alt={video.snippet.title}
-                      className="absolute top-0 left-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                      onError={(e) => { e.currentTarget.src = 'https://placehold.co/1280x720/e2e8f0/4a5568?text=Error+al+cargar+la+imagen'; }}
-                    />
-                    <div className="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-40 transition-all duration-300 flex items-center justify-center">
-                      <PlayCircle className="h-16 w-16 text-white text-opacity-80 transform scale-0 group-hover:scale-100 transition-transform duration-300 ease-in-out" />
-                    </div>
-                  </div>
-                  <div className="p-5">
-                    <h3 className="font-bold text-gray-800 text-base leading-snug line-clamp-2">
-                      {video.snippet.title}
-                    </h3>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-          
-          {/* --- Estado Vacío --- */}
-          {!loading && !error && videos.length === 0 && (
-             <div className="flex flex-col items-center justify-center text-center py-20 bg-gray-100 border border-gray-200 rounded-lg p-6">
-               <VideoOff className="h-12 w-12 text-gray-400 mb-4" />
-               <p className="text-gray-500 text-lg font-medium">No hay videos para mostrar.</p>
-               <p className="text-gray-400 mt-1">Parece que aún no se han subido videos a este canal.</p>
-             </div>
-          )}
-
+          {/* Contenedor de las tarjetas con animación escalonada */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10 max-w-6xl mx-auto">
+            {socialLinks.map((social, index) => (
+              <div 
+                key={social.platform} 
+                className="animate-fade-in-up" 
+                style={{ animationDelay: `${300 + index * 150}ms` }}
+              >
+                <SocialCard
+                  platform={social.platform}
+                  handle={social.handle}
+                  url={social.url}
+                  icon={social.icon}
+                  colors={social.colors}
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
-      {/* --- Reproductor Lightbox (Modal) --- */}
-      {selectedVideoId && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-80 backdrop-blur-sm flex items-center justify-center z-50 p-4 transition-opacity duration-300 ease-in-out animate-fade-in"
-          onClick={closeLightbox}
-        >
-          <div 
-            className="relative w-full max-w-4xl bg-black rounded-lg shadow-2xl overflow-hidden animate-scale-in"
-            onClick={(e) => e.stopPropagation()} // Evita que el clic en el video cierre el modal
-          >
-            <button  
-              className="absolute -top-3 -right-3 sm:top-0 sm:right-0 z-10 m-3 w-10 h-10 flex items-center justify-center bg-white bg-opacity-20 hover:bg-opacity-30 rounded-full text-white transition-all duration-200"
-              onClick={closeLightbox}
-              aria-label="Cerrar reproductor de video"
-            >
-              <IconX className="h-6 w-6" />
-            </button>
-            
-            <div className="aspect-video">
-              <iframe
-                src={`https://www.youtube.com/embed/${selectedVideoId}?autoplay=1&rel=0`}
-                title="Reproductor de video de YouTube"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-                className="w-full h-full border-0"
-              />
-            </div>
-          </div>
-        </div>
-      )}
+      {/* Estilos para las animaciones y el fondo de aurora */}
       <style jsx global>{`
-        @keyframes fade-in {
-          from { opacity: 0; }
-          to { opacity: 1; }
+        .aurora-blob {
+          position: absolute;
+          border-radius: 50%;
+          filter: blur(80px);
+          opacity: 0.4;
+          will-change: transform, opacity, filter;
         }
-        @keyframes scale-in {
-          from { transform: scale(0.95); opacity: 0; }
-          to { transform: scale(1); opacity: 1; }
+        .aurora-blob.one {
+          width: 500px;
+          height: 500px;
+          background-color: #4f46e5; /* Indigo */
+          top: -150px;
+          left: -100px;
+          animation: moveOne 20s infinite alternate;
         }
-        .animate-fade-in { animation: fade-in 0.3s ease-in-out; }
-        .animate-scale-in { animation: scale-in 0.3s ease-in-out; }
+        .aurora-blob.two {
+          width: 450px;
+          height: 450px;
+          background-color: #db2777; /* Pink */
+          top: 100px;
+          right: -200px;
+          animation: moveTwo 22s infinite alternate;
+        }
+        .aurora-blob.three {
+          width: 400px;
+          height: 400px;
+          background-color: #f59e0b; /* Amber */
+          bottom: -100px;
+          left: 20%;
+          animation: moveThree 24s infinite alternate;
+        }
+         .aurora-blob.four {
+          width: 300px;
+          height: 300px;
+          background-color: #10b981; /* Emerald */
+          bottom: 50px;
+          right: 10%;
+          animation: moveFour 26s infinite alternate;
+        }
+
+        @keyframes moveOne {
+          from { transform: translate(-100px, -50px) rotate(-30deg); }
+          to { transform: translate(100px, 80px) rotate(40deg); }
+        }
+        @keyframes moveTwo {
+          from { transform: translate(50px, -80px) rotate(20deg); }
+          to { transform: translate(-120px, 100px) rotate(-50deg); }
+        }
+        @keyframes moveThree {
+          from { transform: translate(-80px, 100px) rotate(-40deg); }
+          to { transform: translate(60px, -50px) rotate(30deg); }
+        }
+        @keyframes moveFour {
+          from { transform: translate(100px, 50px) rotate(50deg); }
+          to { transform: translate(-50px, -100px) rotate(-20deg); }
+        }
+        
+        @keyframes fade-in-down {
+          from { opacity: 0; transform: translateY(-20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes fade-in-up {
+          from { opacity: 0; transform: translateY(30px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-fade-in-down {
+          animation: fade-in-down 0.8s ease-out both;
+        }
+        .animate-fade-in-up {
+          animation: fade-in-up 0.7s ease-out both;
+        }
       `}</style>
     </div>
   );
